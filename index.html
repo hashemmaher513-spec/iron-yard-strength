@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Iron Yard Strength</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: single dark world — giant condensed stacked headline over an animated loaded barbell, then programs, plate calculator, timetable, pricing */
+:root{
+  --bg:#121417;--panel:#1a1d22;--ink:#eceae4;--muted:#8d939c;--line:#2a2f36;
+  --chalk:#eceae4;--cobalt:#4d7cff;--plate-r:#c8433a;--plate-b:#3c64d8;--plate-y:#d9a520;--plate-g:#3e8f5a;
+  --display:"Anton",Impact,sans-serif;--body:"Archivo",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+.in{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:.92;text-transform:uppercase;letter-spacing:.01em}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+nav .in{display:flex;justify-content:space-between;align-items:center;padding-block:20px}
+.logo{font-family:var(--display);font-size:1.6rem;letter-spacing:.04em}
+.logo i{font-style:normal;color:var(--cobalt)}
+.join{font-weight:700;text-decoration:none;color:var(--bg);background:var(--chalk);padding:10px 18px;border-radius:4px;transition:background .2s,transform .2s}
+.join:hover{background:var(--cobalt);color:var(--chalk);transform:translateY(-2px)}
+
+.hero{padding-block:24px 56px;overflow:hidden}
+.hero h1{font-size:clamp(4rem,15vw,13rem)}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:inline-block;animation:up .9s cubic-bezier(.7,0,.2,1) both}
+.hero h1 .ln:nth-child(2) span{animation-delay:.1s;-webkit-text-stroke:2px var(--chalk);color:transparent}
+.hero h1 .ln:nth-child(3) span{animation-delay:.2s;color:var(--cobalt)}
+@keyframes up{from{transform:translateY(105%)}}
+.herorow{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-top:28px}
+.herorow p{max-width:40ch;color:var(--muted);font-size:1.1rem;margin:0}
+.herorow p b{color:var(--ink)}
+@media (max-width:760px){.herorow{grid-template-columns:1fr}}
+
+.bar{width:100%;max-width:100%;height:auto;display:block}
+.bar .plate{transform-box:fill-box;transform-origin:center;animation:slide .7s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes slide{from{transform:translateX(var(--from));opacity:0}}
+.lift{animation:lift 3.6s 1.8s ease-in-out infinite}
+@keyframes lift{0%,100%{transform:translateY(0)}45%,55%{transform:translateY(-14px)}}
+
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding-block:16px}
+.ticker div{display:inline-flex;gap:40px;animation:mq 26s linear infinite;font-family:var(--display);font-size:2rem;text-transform:uppercase}
+.ticker span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--muted)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section.s{padding-block:96px}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+.shead h2{font-size:clamp(2.8rem,7vw,5.5rem)}
+.shead p{max-width:38ch;color:var(--muted);margin:0}
+
+.programs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--line);border:2px solid var(--line)}
+.prog{background:var(--bg);padding:32px 28px;display:flex;flex-direction:column;gap:16px;min-height:300px;position:relative;overflow:hidden;transition:background .3s}
+.prog::before{content:"";position:absolute;inset:auto 0 0 0;height:4px;background:var(--cobalt);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.7,0,.2,1)}
+.prog:hover{background:var(--panel)}.prog:hover::before{transform:scaleX(1)}
+.prog h3{font-size:2.4rem}
+.prog p{color:var(--muted);margin:0;flex:1}
+.prog .label{color:var(--cobalt)}
+@media (max-width:860px){.programs{grid-template-columns:1fr}.prog{min-height:0}}
+
+.calc{background:var(--panel);border-radius:6px;padding:36px;display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:center}
+.calc label{display:flex;flex-direction:column;gap:8px}
+.calc input{font-family:var(--display);font-size:4rem;background:transparent;border:0;border-bottom:2px solid var(--line);color:var(--ink);width:100%;padding:0 0 6px;outline:none;font-variant-numeric:tabular-nums}
+.calc input:focus{border-color:var(--cobalt)}
+.calc .note{color:var(--muted);font-size:.9rem;margin-top:12px}
+.loadout{display:flex;flex-direction:column;gap:18px;min-width:0}
+.plates{display:flex;align-items:center;gap:4px;min-height:150px;overflow-x:auto}
+.sleeve{height:14px;width:60px;background:#9aa0a8;border-radius:2px;flex:none}
+.pl{border-radius:4px;flex:none;display:grid;place-items:center;font-family:var(--mono);font-size:.65rem;color:#fff;writing-mode:vertical-rl;animation:pop .35s cubic-bezier(.2,.9,.3,1.3) both}
+@keyframes pop{from{transform:scaleY(.2);opacity:0}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:.85rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px}
+@media (max-width:860px){.calc{grid-template-columns:1fr;padding:24px}}
+
+.tt{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.9rem}
+th,td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-family:var(--mono);color:var(--muted)}
+td .cls{display:inline-block;padding:4px 10px;border-radius:3px;background:var(--line);transition:background .2s}
+td .cls.hot{background:var(--cobalt)}
+tr:hover td .cls{background:#353b44}tr:hover td .cls.hot{background:var(--cobalt)}
+
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.plan{border:1px solid var(--line);border-radius:6px;padding:32px;display:flex;flex-direction:column;gap:18px;transition:transform .3s,border-color .3s}
+.plan:hover{transform:translateY(-6px);border-color:var(--muted)}
+.plan.best{background:var(--chalk);color:var(--bg);border-color:var(--chalk)}
+.plan.best .label,.plan.best li{color:#4a4f57}
+.price{font-family:var(--display);font-size:4rem;line-height:1}
+.price small{font-family:var(--body);font-size:1rem;color:var(--muted)}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;color:var(--muted);flex:1}
+.plan li::before{content:"— "}
+.plan a{text-align:center;padding:12px;border-radius:4px;text-decoration:none;font-weight:700;border:1px solid currentColor;color:inherit;transition:background .2s,color .2s}
+.plan a:hover{background:var(--cobalt);border-color:var(--cobalt);color:var(--chalk)}
+@media (max-width:860px){.plans{grid-template-columns:1fr}}
+a:focus-visible,input:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+
+footer{border-top:1px solid var(--line);padding-block:40px}
+footer .in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:end}
+footer h2{font-size:clamp(3rem,10vw,8rem);color:transparent;-webkit-text-stroke:1px var(--muted)}
+@supports (animation-timeline:view()){.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 45%}@keyframes rv{from{opacity:.15;transform:translateY(40px)}}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<nav><div class="in"><div class="logo">IRON<i>/</i>YARD</div><a class="join" href="#plans">Join now</a></div></nav>
+
+<header class="hero"><div class="in">
+  <h1><span class="ln"><span>Lift</span></span><span class="ln"><span>Heavy.</span></span><span class="ln"><span>Stay long.</span></span></h1>
+  <div class="herorow">
+    <p><b>A strength gym in New Cairo.</b> Twelve calibrated racks, competition plates, and coaches who write your program and watch every rep.</p>
+    <svg class="bar" viewBox="0 0 600 160" aria-label="A loaded barbell">
+      <g class="lift">
+        <rect x="20" y="74" width="560" height="12" rx="3" fill="#9aa0a8"/>
+        <rect x="150" y="70" width="10" height="20" fill="#6c727a"/><rect x="440" y="70" width="10" height="20" fill="#6c727a"/>
+        <g style="--from:-140px">
+          <rect class="plate" x="120" y="10" width="26" height="140" rx="4" fill="var(--plate-r)" style="animation-delay:.5s;--from:-140px"/>
+          <rect class="plate" x="92" y="10" width="26" height="140" rx="4" fill="var(--plate-r)" style="animation-delay:.65s;--from:-140px"/>
+          <rect class="plate" x="70" y="22" width="20" height="116" rx="4" fill="var(--plate-b)" style="animation-delay:.8s;--from:-140px"/>
+          <rect class="plate" x="54" y="36" width="14" height="88" rx="3" fill="var(--plate-y)" style="animation-delay:.95s;--from:-140px"/>
+        </g>
+        <rect class="plate" x="454" y="10" width="26" height="140" rx="4" fill="var(--plate-r)" style="animation-delay:.5s;--from:140px"/>
+        <rect class="plate" x="482" y="10" width="26" height="140" rx="4" fill="var(--plate-r)" style="animation-delay:.65s;--from:140px"/>
+        <rect class="plate" x="510" y="22" width="20" height="116" rx="4" fill="var(--plate-b)" style="animation-delay:.8s;--from:140px"/>
+        <rect class="plate" x="532" y="36" width="14" height="88" rx="3" fill="var(--plate-y)" style="animation-delay:.95s;--from:140px"/>
+      </g>
+    </svg>
+  </div>
+</div></header>
+
+<div class="ticker" aria-hidden="true"><div id="tk"></div></div>
+
+<section class="s"><div class="in">
+  <div class="shead rv"><h2>Programs</h2><p>Every member starts with a movement assessment. Then you pick a lane.</p></div>
+  <div class="programs">
+    <div class="prog rv"><span class="label">3 days / week</span><h3>Strength<br>Base</h3><p>Squat, bench, deadlift, press. Linear progression for your first year under the bar.</p><span class="label">Beginner</span></div>
+    <div class="prog rv"><span class="label">4 days / week</span><h3>Power<br>Block</h3><p>RPE-based training in 12-week cycles that peak for a meet or a test day.</p><span class="label">Intermediate</span></div>
+    <div class="prog rv"><span class="label">5 days / week</span><h3>Built<br>Different</h3><p>Hypertrophy splits with tracked volume per muscle group and a coach check-in each week.</p><span class="label">All levels</span></div>
+  </div>
+</div></section>
+
+<section class="s" style="padding-top:0"><div class="in">
+  <div class="shead rv"><h2>Load the bar</h2><p>Type a target weight. We'll tell you which plates go on each side of a 20&nbsp;kg bar.</p></div>
+  <div class="calc rv">
+    <label><span class="label">Target (kg)</span><input id="kg" type="number" min="20" max="400" step="2.5" value="140" inputmode="decimal"></label>
+    <div class="loadout">
+      <span class="label">Per side</span>
+      <div class="plates" id="plates"></div>
+      <div class="chips" id="chips"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="s" style="padding-top:0"><div class="in">
+  <div class="shead rv"><h2>This week</h2><p>Coached classes. Blue sessions fill up first, so book a day ahead.</p></div>
+  <div class="tt rv"><table>
+    <thead><tr><th>Time</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th></tr></thead>
+    <tbody>
+      <tr><td>07:00</td><td><span class="cls">Mobility</span></td><td><span class="cls hot">Strength Base</span></td><td><span class="cls">Mobility</span></td><td><span class="cls hot">Strength Base</span></td><td><span class="cls">Mobility</span></td><td><span class="cls">Open gym</span></td></tr>
+      <tr><td>17:00</td><td><span class="cls hot">Power Block</span></td><td><span class="cls">Conditioning</span></td><td><span class="cls hot">Power Block</span></td><td><span class="cls">Conditioning</span></td><td><span class="cls hot">Power Block</span></td><td><span class="cls">Technique lab</span></td></tr>
+      <tr><td>20:00</td><td><span class="cls">Built Different</span></td><td><span class="cls hot">Built Different</span></td><td><span class="cls">Built Different</span></td><td><span class="cls hot">Built Different</span></td><td><span class="cls">Built Different</span></td><td><span class="cls hot">Mock meet</span></td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="s" id="plans" style="padding-top:0"><div class="in">
+  <div class="shead rv"><h2>Membership</h2><p>Prices in Egyptian pounds. No joining fee in November.</p></div>
+  <div class="plans">
+    <div class="plan rv"><span class="label">Open gym</span><div class="price">1,200<small> EGP / mo</small></div><ul><li>Racks 6am–midnight</li><li>Locker &amp; showers</li><li>Monthly assessment</li></ul><a href="#plans">Choose</a></div>
+    <div class="plan best rv"><span class="label">Coached</span><div class="price">2,400<small> EGP / mo</small></div><ul><li>Everything in Open gym</li><li>Unlimited classes</li><li>Written program, weekly review</li></ul><a href="#plans">Choose</a></div>
+    <div class="plan rv"><span class="label">1-on-1</span><div class="price">4,800<small> EGP / mo</small></div><ul><li>12 private sessions</li><li>Nutrition targets</li><li>Video form checks</li></ul><a href="#plans">Choose</a></div>
+  </div>
+</div></section>
+
+<footer><div class="in"><h2>Iron/Yard</h2><span class="label">90th St, New Cairo · Concept project</span></div></footer>
+
+<script>
+const words=["Squat","Bench","Deadlift","Press","Pull","Carry","Rest","Repeat"];
+const tk=document.getElementById("tk");tk.innerHTML=[...words,...words].map(w=>`<span>${w}</span>`).join("");
+const P=[[25,"var(--plate-r)",140,26],[20,"var(--plate-b)",140,24],[15,"var(--plate-y)",124,22],[10,"var(--plate-g)",108,18],[5,"#d9d6cf",84,14],[2.5,"#55595f",70,12],[1.25,"#9aa0a8",58,10]];
+const inp=document.getElementById("kg");
+function calc(){
+  let v=parseFloat(inp.value);const note=document.getElementById("note");
+  const pl=document.getElementById("plates"),ch=document.getElementById("chips");pl.innerHTML="";ch.innerHTML="";
+  if(isNaN(v)||v<20){note.textContent="Enter at least 20 kg (the empty bar).";return}
+  let side=(v-20)/2,used=[],counts={};
+  for(const p of P){while(side>=p[0]-1e-9){side-=p[0];used.push(p);counts[p[0]]=(counts[p[0]]||0)+1}}
+  pl.innerHTML=`<div class="sleeve"></div>`+used.map((p,i)=>`<div class="pl" style="height:${p[2]}px;width:${p[3]}px;background:${p[1]};animation-delay:${i*60}ms">${p[0]}</div>`).join("");
+  ch.innerHTML=Object.entries(counts).sort((a,b)=>b[0]-a[0]).map(([k,n])=>`<span class="chip">${n} × ${k} kg</span>`).join("")||`<span class="chip">Just the bar</span>`;
+  const loaded=v-side*2;note.textContent=side>0.001?`Closest load: ${loaded} kg. ${(side*2).toFixed(2)} kg can't be made with standard plates.`:`Total ${v} kg = 20 kg bar + ${(v-20)/2} kg each side.`;
+}
+inp.addEventListener("input",calc);calc();
+</script>
+
+</body></html>
